@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UsuarioController;
-use App\Usuario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -10,6 +9,10 @@ use Illuminate\Support\Facades\Route;
 | Web Routes
 |--------------------------------------------------------------------------
 */
+
+Route::view('/', 'login.index')->name('login.form');
+Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 Route::prefix('usuarios')->group(function () {
     Route::get('/', [UsuarioController::class, 'index'])->name('usuarios-index');
@@ -19,9 +22,6 @@ Route::prefix('usuarios')->group(function () {
     Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update');
     Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
 });
-Route::view('/login', 'login.index')->name('login.form');
-Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
-
 Route::fallback(function () {
     return "Erro ao localizar a rota!";
 });
