@@ -12,7 +12,7 @@
       <a href="{{route('usuarios-create')}}" class="btn btn-success">Novo Usuario</a>
     </div>
   </div>
-  <table class="table table-dark table-hover">
+  <table class="table  table-hover">
     <thead>
       <tr>
         <th scope="col">id</th>
