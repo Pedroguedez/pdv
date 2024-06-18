@@ -15,12 +15,14 @@ class CreateProdutosTable extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 100);
-            $table->string('descricao', 255);
+            $table->foreignId('id_empresa')->constrained('empresas');
+            $table->string('nome', 55);
+            $table->string('codigo', 55);
             $table->decimal('preco', 10, 2);
-            $table->integer('quantidade_estoque')->default(0);
-            $table->unsignedBigInteger('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+            $table->string('descricao', 100);
+            $table->string('imagem', 55)->nullable();
+            $table->boolean('ativa_quantidade')->default(false);
+            $table->integer('quantidade')->default(1);
             $table->timestamps();
         });
     }
