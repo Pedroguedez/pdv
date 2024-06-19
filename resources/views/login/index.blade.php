@@ -44,11 +44,6 @@
                     <input type="password" id="login_senha" class="form-control form-control-lg" name="password" />
                   </div>
 
-                  <div data-mdb-input-init class="form-outline mb-4">
-                    <label class="form-label" for="login_cargo">Cargo</label>
-                    <input type="text" id="login_cargo" class="form-control form-control-lg" name="cargo" />
-                  </div>
-
                   <div class="pt-1 mb-4">
                     <button type="submit" class="btn btn-dark btn-lg btn-block">Login</button>
                   </div>

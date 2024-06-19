@@ -13,20 +13,21 @@ class LoginController extends Controller
         $credenciais = $request->validate([
             'nome' => ['required'],
             'password' => ['required'],
-            'cargo' => ['required'],
         ], [
             'nome.required' => 'O campo nome do usuario é obrigatorio!',
             'password.required' => 'O campo senha é obrigatorio!',
-            'cargo.required' => 'O campo cargo é obrigatorio!',
         ]);
-        if ($user = User::where('nome', $request->input('nome'))->first()) {
-            if ($request->input('password') == $user->password && $request->input('cargo') == $user->cargo) {
+        $user = User::where('nome', $request->input('nome'))->first();
+        if ($user) {
+            if ($request->input('password') == $user->password) {
                 Auth::login($user);
                 $request->session()->regenerate();
-                return redirect()->intended('usuarios')->withInput();
+                return redirect()->intended('produtos')->withInput();
             } else {
                 return redirect()->back()->with('erro', 'Usuario ou senha inválida.')->withInput();
             }
+        } else {
+            return redirect()->back()->with('erro', 'Usuário não encontrado.')->withInput();
         }
     }
     public function logout(Request $request)
