@@ -33,9 +33,9 @@
         <th scope="col">Nome</th>
         <th scope="col">R$ Preço</th>
         <th scope="col">Quantidade</th>
-        <th style="text-align:right;padding-right:0"><button class="btn btn-sm btn-success" title="Novo Produto!">
-            <i class="fas fa-plus"></i>
-          </button></th>
+        <th style="text-align:right;padding-right:0"><a href="{{ route('produtos-create')}}" class="btn btn-sm btn-success" title="Novo Produto!">
+            <i class="fas fa-plus"></i> Novo Produto
+          </a></th>
       </tr>
     </thead>
     <tbody>

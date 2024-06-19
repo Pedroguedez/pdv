@@ -25,6 +25,8 @@ Route::prefix('usuarios')->group(function () {
 });
 Route::prefix('produtos')->group(function () {
     Route::get('/', [ProdutoController::class, 'index'])->name('produtos-index');
+    Route::get('/create', [ProdutoController::class, 'create'])->name('produtos-create');
+    Route::post('/', [ProdutoController::class, 'store'])->name('produtos-store');
 });
 
 Route::fallback(function () {
