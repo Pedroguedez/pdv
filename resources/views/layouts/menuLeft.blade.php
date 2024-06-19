@@ -30,9 +30,17 @@
       @auth
       @if (auth()->user()->cargo == 'admin')
       <li>
-        <a href="{{ route('usuarios-index') }}" class="nav-link px-2 align-middle">
-          <i class="fas fa-user-tie"></i> <span class="ms-1 d-none d-sm-inline">Admin <small style="float:right;opacity:0.50">Usuarios</small></span>
+        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-2 align-middle">
+          <i class="fas fa-user-tie"></i> Admin <i class="fas fa-chevron-down float-end"></i>
         </a>
+        <ul class="collapse nav flex-column ms-1" id="submenu1">
+          <li class="nav-item">
+            <a href="{{ route('usuarios-index') }}" class="nav-link px-0">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link px-0">Empresas</a>
+          </li>
+        </ul>
       </li>
       @endif
       @endauth
