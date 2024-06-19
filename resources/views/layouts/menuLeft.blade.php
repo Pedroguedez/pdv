@@ -40,10 +40,14 @@
     <hr>
     <div class="dropdown pb-4">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        @auth
         <span class="d-none d-sm-inline mx-1">{{ auth()->user()->nome }}</span>
+        @endauth
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+        @auth
         <li><a class="dropdown-item" href="{{ route('usuarios-edit' , ['id'=>auth()->user()->id]) }}">Profile</a></li>
+        @endauth
         <li>
           <hr class="dropdown-divider">
         </li>
