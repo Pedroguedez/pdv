@@ -47,12 +47,25 @@
         <td>{{$produto->quantidade}}</td>
         <td style="text-align:right">
           <div class="btn-group dropup">
-            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            @if($isAdmin) <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-cogs"></i>
+            </button> @endif
+            @if(!$isAdmin)
+            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" disabled>
               <i class="fas fa-cogs"></i>
             </button>
+            @endif
             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-              <li><button class="dropdown-item" type="button"><i class="fas fa-edit"></i> Editar</button></li>
-              <li><button class="dropdown-item" type="button"><i class="fas fa-trash-alt" style="color:#cc6666"></i> Excluir</button></li>
+              <li><a href="{{route('produtos-edit', ['id'=>$produto->id])}}" class="dropdown-item" type="button"><i class="fas fa-edit"></i> Editar</a></li>
+              <li>
+                <form action="{{ route('produtos-destroy', ['id' => $produto->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="dropdown-item">
+                    <i class="fas fa-trash-alt" style="color: #cc6666"> Excluir</i>
+                  </button>
+                </form>
+              </li>
             </ul>
           </div>
         </td>

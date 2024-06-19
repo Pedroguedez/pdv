@@ -16,8 +16,8 @@ class ProdutoController extends Controller
     {
 
         $produtos = Produto::all();
-
-        return view('produtos.index', ['produtos' => $produtos]);
+        $isAdmin = (auth()->user()->cargo == 'admin');
+        return view('produtos.index', ['produtos' => $produtos, 'isAdmin' => $isAdmin]);
     }
     public function create()
     {
@@ -30,6 +30,20 @@ class ProdutoController extends Controller
         $dadosProduto = $request->except('ativar_quantidade');
         $dadosProduto['ativar_quantidade'] = $ativar_quantidade;
         Produto::create($dadosProduto);
+        return redirect()->route('produtos-index');
+    }
+    public function edit($id)
+    {
+        $produto = Produto::where('id', $id)->first();
+        if (!empty($produto)) {
+            return view('produtos.edit', ['produto' => $produto]);
+        } else {
+            return redirect()->route('produtos-index');
+        }
+    }
+    public function destroy($id)
+    {
+        Produto::where('id', $id)->delete();
         return redirect()->route('produtos-index');
     }
 }
