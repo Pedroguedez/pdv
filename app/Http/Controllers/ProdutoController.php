@@ -46,4 +46,11 @@ class ProdutoController extends Controller
         Produto::where('id', $id)->delete();
         return redirect()->route('produtos-index');
     }
+    public function update(Request $request, $id)
+    {
+        dd($request);
+        //$dados = [];
+        // Produto::where('id', $id)->delete();
+        //return redirect()->route('produtos-index');
+    }
 }

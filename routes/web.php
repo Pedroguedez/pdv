@@ -29,6 +29,7 @@ Route::prefix('produtos')->group(function () {
     Route::post('/', [ProdutoController::class, 'store'])->name('produtos-store');
     Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('produtos-edit');
     Route::delete('/{id}', [ProdutoController::class, 'destroy'])->where('id', '[0-9]+')->name('produtos-destroy');
+    Route::put('/{id}', [ProdutoController::class, 'update'])->where('id', '[0-9]+')->name('produtos-update');
 });
 
 Route::fallback(function () {
