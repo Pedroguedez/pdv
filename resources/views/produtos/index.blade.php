@@ -8,14 +8,18 @@
   <div class="row">
     <div class="card col-lg-12 content-div">
       <div class="card-body">
-        <div class="row">
-          <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Pesquise por nome..." onkeyup="pesquisarProdutoPorNome($(this).val())">
+        <form action="{{ route('produtos-index') }}" method="post">
+          @csrf
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Pesquise por nome..." name="search-name" value="{{ old('search-name')}}">
+            </div>
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="Pesquise por código de barras..." name="search-cod" value="{{ old('search-cod') }}">
+            </div>
           </div>
-          <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Pesquise por código de barras..." onkeyup="pesquisarProdutoPorCodigoDeBarras($(this).val())" onkeypress="pesquisarProdutoPorCodigoDeBarras($(this).val())">
-          </div>
-        </div>
+          <button>aqui </button>
+        </form>
       </div>
     </div>
   </div>

@@ -24,9 +24,9 @@ Route::prefix('usuarios')->group(function () {
     Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
 });
 Route::prefix('produtos')->group(function () {
-    Route::get('/', [ProdutoController::class, 'index'])->name('produtos-index');
+    Route::match(['get', 'post'], '/', [ProdutoController::class, 'index'])->name('produtos-index');
     Route::get('/create', [ProdutoController::class, 'create'])->name('produtos-create');
-    Route::post('/', [ProdutoController::class, 'store'])->name('produtos-store');
+    Route::post('/store', [ProdutoController::class, 'store'])->name('produtos-store');
     Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('produtos-edit');
     Route::delete('/{id}', [ProdutoController::class, 'destroy'])->where('id', '[0-9]+')->name('produtos-destroy');
     Route::put('/{id}', [ProdutoController::class, 'update'])->where('id', '[0-9]+')->name('produtos-update');
