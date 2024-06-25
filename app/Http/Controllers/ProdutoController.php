@@ -3,21 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Produto;
-use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Symfony\Component\Console\Input\Input;
 
 class ProdutoController extends Controller
 {
+    //protected $idEmpresa;
     public function __construct()
     {
         $this->middleware('auth');
+        //$this->idEmpresa = Session::get('idEmpresa');
     }
     public function index()
     {
+        $query = Produto::query();
 
-        $produtos = Produto::all();
+        if (request()->has('search-name')) {
+            $searchName = request()->input('search-name');
+            $query->where('nome', 'like', '%' . $searchName . '%');
+        }
+
+        if (request()->has('search-cod')) {
+            $searchCod = request()->input('search-cod');
+            $query->where('codigo', 'like', '%' . $searchCod . '%');
+        }
+
+        $produtos = $query->get();
         $isAdmin = (auth()->user()->cargo == 'admin');
-        return view('produtos.index', ['produtos' => $produtos, 'isAdmin' => $isAdmin]);
+        return view('produtos.index', compact('produtos', 'isAdmin'));
     }
     public function create()
     {

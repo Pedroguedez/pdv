@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PdvDiferencialController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,11 @@ Route::prefix('produtos')->group(function () {
     Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('produtos-edit');
     Route::delete('/{id}', [ProdutoController::class, 'destroy'])->where('id', '[0-9]+')->name('produtos-destroy');
     Route::put('/{id}', [ProdutoController::class, 'update'])->where('id', '[0-9]+')->name('produtos-update');
+});
+
+Route::prefix('pdv')->group(function () {
+    Route::get('/', [PdvDiferencialController::class, 'index'])->name('vendas-diferencial');
+    Route::get('/padrao', [PdvDiferencialController::class, 'index'])->name('vendas-padrao');
 });
 
 Route::fallback(function () {

@@ -10,10 +10,17 @@
         </a>
       </li>
       <li>
-        <a href="#submenu1" class="nav-link px-2 align-middle">
-          <i class="fas fa-cart-arrow-down"></i>
-          <p class="ms-1 d-none d-sm-inline">Vendas <small style="float:right;opacity:0.50">Diferencial</small></p>
+        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-2 align-middle">
+          <i class="fas fa-cart-arrow-down"></i> Vendas<small style="float:right;opacity:0.50">Diferencial</small> <i class="fas fa-chevron-down float-end"></i>
         </a>
+        <ul class="collapse nav flex-column ms-1" id="submenu2">
+          <li class="nav-item">
+            <a href="{{ route('vendas-diferencial') }}" class="nav-link px-0">Diferencial</a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('vendas-padrao')}}" class="nav-link px-0">Padrão</a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#" class="nav-link px-2 align-middle">
