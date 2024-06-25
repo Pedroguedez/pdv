@@ -11,14 +11,16 @@
         <form action="{{ route('produtos-index') }}" method="post">
           @csrf
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5">
               <input type="text" class="form-control" placeholder="Pesquise por nome..." name="search-name" value="{{ old('search-name')}}">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
               <input type="text" class="form-control" placeholder="Pesquise por código de barras..." name="search-cod" value="{{ old('search-cod') }}">
             </div>
+            <div class="col-md-1">
+              <button class="btn btn-secondary">Pesquisar </button>
+            </div>
           </div>
-          <button>aqui </button>
         </form>
       </div>
     </div>
@@ -36,7 +38,7 @@
         <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">R$ Preço</th>
-        <th scope="col">Quantidade</th>
+        <th scope="col" class="text-center">Quantidade</th>
         <th style="text-align:right;padding-right:0"><a href="{{ route('produtos-create')}}" class="btn btn-sm btn-success" title="Novo Produto!">
             <i class="fas fa-plus"></i> Novo Produto
           </a></th>
@@ -45,10 +47,10 @@
     <tbody>
       @foreach($produtos as $produto)
       <tr>
-        <th>{{$produto->imagem}}</th>
+        <td>{{$produto->imagem}}</td>
         <td>{{$produto->nome}}</td>
         <td>{{$produto->preco}}</td>
-        <td>{{$produto->quantidade}}</td>
+        <td class="text-center">{{$produto->quantidade}}</td>
         <td style="text-align:right">
           <div class="btn-group dropup">
             @if($isAdmin) <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
