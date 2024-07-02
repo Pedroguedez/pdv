@@ -45,7 +45,7 @@
             <a href="{{ route('usuarios-index') }}" class="nav-link px-0">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link px-0">Empresas</a>
+            <a href="{{ route('empresas-index') }}" class="nav-link px-0">Empresas</a>
           </li>
         </ul>
       </li>

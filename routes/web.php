@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PdvDiferencialController;
 use App\Http\Controllers\UsuarioController;
@@ -24,6 +25,16 @@ Route::prefix('usuarios')->group(function () {
     Route::put('/{id}', [UsuarioController::class, 'update'])->where('id', '[0-9]+')->name('usuarios-update');
     Route::delete('/{id}', [UsuarioController::class, 'destroy'])->where('id', '[0-9]+')->name('usuarios-destroy');
 });
+
+Route::prefix('empresas')->group(function () {
+    Route::get('/', [EmpresaController::class, 'index'])->name('empresas-index');
+    Route::get('/create', [EmpresaController::class, 'create'])->name('empresas-create');
+    Route::post('/', [EmpresaController::class, 'store'])->name('empresas-store');
+    Route::get('/{id}/edit', [EmpresaController::class, 'edit'])->where('id', '[0-9]+')->name('empresas-edit');
+    Route::put('/{id}', [EmpresaController::class, 'update'])->where('id', '[0-9]+')->name('empresas-update');
+    Route::delete('/{id}', [EmpresaController::class, 'destroy'])->where('id', '[0-9]+')->name('empresas-destroy');
+});
+
 Route::prefix('produtos')->group(function () {
     Route::match(['get', 'post'], '/', [ProdutoController::class, 'index'])->name('produtos-index');
     Route::get('/create', [ProdutoController::class, 'create'])->name('produtos-create');
