@@ -18,27 +18,27 @@
         <th scope="col">Telefone</th>
         <th scope="col">Celular</th>
         <th scope="col">Seguimento</th>
-        <th style="text-align:center"> <a href="{{ route('empresas-create') }}" class="btn btn-sm btn-success" title="Novo Usuário">
-            <i class="fas fa-plus"></i> Novo Usuário
+        <th style="text-align:center"> <a href="{{ route('empresas-create') }}" class="btn btn-sm btn-success" title="Nova Empresa">
+            <i class="fas fa-plus"></i> Nova Empresa
           </a></th>
       </tr>
     </thead>
     <tbody>
-      @foreach($empresas as $usuario)
+      @foreach($empresas as $empresa)
       <tr>
-        <td>{{$usuario->id}}</td>
-        <td>{{$usuario->nome}}</td>
-        <td>{{$usuario->email}}</td>
-        <td>{{$usuario->telefone}}</td>
-        <td>{{$usuario->celular}}</td>
-        <td>{{$usuario->seguimento}}</td>
+        <td>{{$empresa->id}}</td>
+        <td>{{$empresa->nome}}</td>
+        <td>{{$empresa->email}}</td>
+        <td>{{$empresa->telefone}}</td>
+        <td>{{$empresa->celular}}</td>
+        <td>{{$empresa->segmento}}</td>
         <td style="text-align:center">
           <div class="btn-group droup">
             <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-cogs"></i></button>
             <ul class="dropdown-menu" aria-labelledby="btnGoupDrop1">
-              <li><a href="{{route('empresas-edit', ['id'=>$usuario->id])}}" class="btn dropdown-item"><i class="fas fa-edit"> Editar</i></a></li>
+              <li><a href="{{route('empresas-edit', ['id'=>$empresa->id])}}" class="btn dropdown-item"><i class="fas fa-edit"> Editar</i></a></li>
               <li>
-                <form action="{{ route('empresas-destroy', ['id' => $usuario->id]) }}" method="POST">
+                <form action="{{ route('empresas-destroy', ['id' => $empresa->id]) }}" method="POST">
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="dropdown-item">
